@@ -14,10 +14,11 @@ public class HomePage extends WebPage{
 	private static By selectSortBy = By.id("sort");
 	private static By imgProducts = By.className("s-access-image");
 	
-//	private static By h2ProductTitle = By.cssSelector(".a-size-base.s-inline.s-access-title.a-text-normal']");
-//	private static By h2ProductTitle = By.xpath("//*[@class='a-size-base s-inline s-access-title a-text-normal']");
-//	private static By h2ProductTitle = By.cssSelector("h2[class='a-size-base s-inline s-access-title a-text-normal']");
-	private static By h2ProductTitle = By.xpath("//a[@class='a-link-normal s-access-detail-page s-color-twister-title-link a-text-normal']/h2");
+	private static By h2ProductTitle = By.cssSelector("h2.a-size-base.s-inline.s-access-title.a-text-normal']");
+//	private static By testLocator = By.xpath("//*[@class='a-size-base s-inline s-access-title a-text-normal']");
+//	private static By testLocator = By.cssSelector("h2[class='a-size-base s-inline s-access-title a-text-normal']");
+	private static By testLocator = By.cssSelector("a.a-link-normal.aok-inline-block");
+//	private static By h2ProductTitle = By.xpath("//a[@class='a-link-normal s-access-detail-page s-color-twister-title-link a-text-normal']/h2");
 	
 	private static By divProductRow = By.className("a-row");
 	private static By inputSearch = By.className("nav-input");
@@ -77,7 +78,7 @@ public class HomePage extends WebPage{
 	
 	public String clickOnItemNrByText(int itemNr) {
 		String itemText = "";	
-		List<WebElement> searchedItems = findElements(h2ProductTitle);
+		List<WebElement> searchedItems = findElements(testLocator);
 			if (searchedItems.size()>itemNr-1) {
 				WebElement selectedItem = searchedItems.get(itemNr-1);		
 				selectedItem.click();

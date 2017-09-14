@@ -28,7 +28,7 @@ public class SearchProductOnEStoreTestSteps {
 	@Given("^User is on E-store \"([^\"]*)\"$")
 	public void user_is_on_E_store(String homePageURL) throws Throwable {
 
-	//	driver = new FirefoxDriver();
+	
 		homePage = new HomePage(driver, homePageURL);
 		homePage.maximizeWindow();
 		homePage.loadPage();
@@ -40,7 +40,7 @@ public class SearchProductOnEStoreTestSteps {
 	public void user_enters(String searchText) throws Throwable {
 		homePage.enterSearchText(searchText);
 		homePage.startSearch();
-		//homePage.searchForText(searchText);
+		
 
 	}
 
@@ -59,9 +59,9 @@ public class SearchProductOnEStoreTestSteps {
 		String listedProductTitle = productPage.getProductTitle();
 		
 		Assert.assertTrue(listedProductTitle.contains(productTitle));
-		Assert.assertTrue(listedProductTitle.contains(expectedProductTitle));
+
 	
-	 //   driver.quit();
+	 driver.quit();
 		
 	
 		
