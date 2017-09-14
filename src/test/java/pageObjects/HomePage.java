@@ -13,10 +13,18 @@ public class HomePage extends WebPage{
 	private static By txtBoxSearch = By.id("twotabsearchtextbox");
 	private static By selectSortBy = By.id("sort");
 	private static By imgProducts = By.className("s-access-image");
-	private static By h2ProductName = By.className("a-size-base");
-	private static By inputSearch = By.className("nav-input");
-	private static By tagPageBody =By.tagName("body");
 	
+//	private static By h2ProductTitle = By.cssSelector(".a-size-base.s-inline.s-access-title.a-text-normal']");
+//	private static By h2ProductTitle = By.xpath("//*[@class='a-size-base s-inline s-access-title a-text-normal']");
+//	private static By h2ProductTitle = By.cssSelector("h2[class='a-size-base s-inline s-access-title a-text-normal']");
+	private static By h2ProductTitle = By.xpath("//a[@class='a-link-normal s-access-detail-page s-color-twister-title-link a-text-normal']/h2");
+	
+	private static By divProductRow = By.className("a-row");
+	private static By inputSearch = By.className("nav-input");
+
+	private static By tagPageBody =By.tagName("body");
+	private static By tagA =By.tagName("a");
+
 	
 	public HomePage(WebDriver driver) {
 		super(driver);
@@ -47,6 +55,10 @@ public class HomePage extends WebPage{
 		}
 	
 	public void sortByVisibleText(String text) {
+		
+		clickOnItemNrByText(2);
+		
+		
 	Select select = new Select(findElement(selectSortBy)); // Price: High to Low
 	select.deselectAll();
 	select.selectByVisibleText(text);
@@ -56,19 +68,22 @@ public class HomePage extends WebPage{
 	
 	public void clickOnItemNr(int itemNr) {
 		List<WebElement> searchedItems = findElements(imgProducts);
-		if (searchedItems.size()>0) {
+		if (searchedItems.size()>itemNr-1) {
 			searchedItems.get(itemNr-1).click();
-		}
+		}else throw new IndexOutOfBoundsException("Not so many items to click on");
 		}
 	
+	
+	
 	public String clickOnItemNrByText(int itemNr) {
-		String itemText = "";
-		List<WebElement> searchedItems = findElements(h2ProductName);
-			if (searchedItems.size()>0) {
+		String itemText = "";	
+		List<WebElement> searchedItems = findElements(h2ProductTitle);
+			if (searchedItems.size()>itemNr-1) {
 				WebElement selectedItem = searchedItems.get(itemNr-1);		
 				selectedItem.click();
 				itemText = selectedItem.getText();
-			}
+			}else throw new IndexOutOfBoundsException("Not so many items to click on");
+			System.out.println("Item title:" + itemText);
 			return itemText;
 		}
 	

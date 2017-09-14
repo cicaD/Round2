@@ -44,25 +44,14 @@ public class SearchProductOnEStoreTestSteps {
 
 	}
 
-/*	
-	@And("^User choose item \"([^\"]*)\" from list of displayed items$")
-	public void user_choose_item_from_list_of_displayed_items(String itemNr) throws Throwable {
-		expectedProductTitle = homePage.clickOnItemNrByText(Integer.parseInt(itemNr));
-		System.out.println(expectedProductTitle);
-		
-		
-	//	homePage.clickOnItemNr(Integer.parseInt(itemNr));
-	}
-
-
-*/
 	
-	@When("^User choose item \"(\\d+)\" from list of displayed items$")
-	public void user_choose_item_from_list_of_displayed_items(int listNr) throws Throwable {
-		homePage.clickOnItemNr(listNr);
-		
+	@And("^User choose item \"(\\d+)\" from list of displayed items$")
+	public void user_choose_item_from_list_of_displayed_items(int itemNr) throws Throwable {
+	//	expectedProductTitle = homePage.clickOnItemNrByText(itemNr);
+		homePage.clickOnItemNr(itemNr);
 
 	}
+
 	
 	@Then("^item with \"([^\"]*)\" is dispalyed on web page$")
 	public void item_with_is_dispalyed_on_web_page(String productTitle) throws Throwable {
@@ -70,6 +59,7 @@ public class SearchProductOnEStoreTestSteps {
 		String listedProductTitle = productPage.getProductTitle();
 		
 		Assert.assertTrue(listedProductTitle.contains(productTitle));
+		Assert.assertTrue(listedProductTitle.contains(expectedProductTitle));
 	
 	 //   driver.quit();
 		

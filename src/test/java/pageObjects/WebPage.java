@@ -109,6 +109,7 @@ public abstract class WebPage {
 			return element;	
 		}
 
+		
 
 		public WebElement findSubElement(By... bys) {
 			WebElement element = findElement(bys[0]);
@@ -124,7 +125,9 @@ public abstract class WebPage {
 
 		public List<WebElement> findElements(By by){
 			List<WebElement> elements = null;
-			new WebDriverWait(driver, EXPLICIT_WAIT_SEC).until(ExpectedConditions.presenceOfElementLocated(by));
+			//new WebDriverWait(driver, EXPLICIT_WAIT_SEC).until(ExpectedConditions.presenceOfElementLocated(by));
+			//new WebDriverWait(driver, EXPLICIT_WAIT_SEC).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+			new WebDriverWait(driver, EXPLICIT_WAIT_SEC).until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
 			elements = driver.findElements(by);
 			return elements;	
 		}
